@@ -10,6 +10,7 @@ import io.ImageManager;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import muestreo.HistogramaFrecuencias;
 
 /**
  *
@@ -23,14 +24,9 @@ public class AnalisisDeImagenes {
     public static void main(String[] args) {
         Image imagen = ImageManager.openImage();
         JFrameImagen frame1 = new JFrameImagen(imagen);
-        BufferedImage bf = ImageManager.toBufferedImage(imagen);
-        Color verde = new Color(254, 245, 1);
-        bf.setRGB(23, 100, verde.getRGB());
-        bf.setRGB(24, 100, verde.getRGB());
-        bf.setRGB(23, 101, verde.getRGB());
-        bf.setRGB(24, 101, verde.getRGB());
-        Image nueva = ImageManager.toImage(bf);
-        JFrameImagen frame2 = new JFrameImagen(nueva);
+        HistogramaFrecuencias hf = new HistogramaFrecuencias(imagen);
+        hf.graficarHistogramasRGB();
+        
         System.out.println();
             
     }
