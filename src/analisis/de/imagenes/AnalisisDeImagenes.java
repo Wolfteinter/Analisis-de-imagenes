@@ -10,6 +10,7 @@ import io.ImageManager;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import muestreo.EscalaGrises;
 import muestreo.HistogramaFrecuencias;
 
 /**
@@ -24,8 +25,9 @@ public class AnalisisDeImagenes {
     public static void main(String[] args) {
         Image imagen = ImageManager.openImage();
         JFrameImagen frame1 = new JFrameImagen(imagen);
-        HistogramaFrecuencias hf = new HistogramaFrecuencias(imagen);
-        hf.graficarHistogramasRGB();
+        Image grises = EscalaGrises.generarImagenEnGrises(imagen);
+        JFrameImagen frame2 = new JFrameImagen(grises);
+        
         
         System.out.println();
             
