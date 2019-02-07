@@ -12,6 +12,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import muestreo.EscalaGrises;
 import muestreo.HistogramaFrecuencias;
+import muestreo.Umbralizacion;
 
 /**
  *
@@ -27,6 +28,10 @@ public class AnalisisDeImagenes {
         JFrameImagen frame1 = new JFrameImagen(imagen);
         Image grises = EscalaGrises.generarImagenEnGrises(imagen);
         JFrameImagen frame2 = new JFrameImagen(grises);
+        HistogramaFrecuencias histo = new HistogramaFrecuencias(grises);
+        histo.graficarHistogramasRGB();
+        Image binaria = Umbralizacion.umbralizacionSimple(253,grises);
+        JFrameImagen frame3 = new JFrameImagen(binaria);
         
         
         System.out.println();
