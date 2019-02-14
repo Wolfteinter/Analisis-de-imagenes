@@ -32,9 +32,9 @@ public class HistogramaFrecuencias {
     public void graficarHistogramasRGB(){
     // graficar los Histogramas
     Grafica grafica = new Grafica("Histogramas RGB","Color","Frecuencias");
-    grafica.agregarSerie("Rojo",this.histogramaR);
-    grafica.agregarSerie("Azul",this.histogramaB);
-    grafica.agregarSerie("Verde",this.histogramaG);
+    grafica.agregarSerie("Rojo", this.getHistogramaR());
+    grafica.agregarSerie("Azul", this.getHistogramaB());
+    grafica.agregarSerie("Verde", this.getHistogramaG());
     grafica.crearGrafica();
     
     }
@@ -46,10 +46,31 @@ public class HistogramaFrecuencias {
         for (int x=0; x < bi.getWidth();x++)
             for(int y=0; y < bi.getHeight();y++){
                 Color pixel = new Color(bi.getRGB(x, y));
-                this.histogramaR[pixel.getRed()]++;
-                this.histogramaG[pixel.getGreen()]++;
-                this.histogramaB[pixel.getBlue()]++;
+                this.getHistogramaR()[pixel.getRed()]++;
+                this.getHistogramaG()[pixel.getGreen()]++;
+                this.getHistogramaB()[pixel.getBlue()]++;
             }
+    }
+
+    /**
+     * @return the histogramaR
+     */
+    public int[] getHistogramaR() {
+        return histogramaR;
+    }
+
+    /**
+     * @return the histogramaG
+     */
+    public int[] getHistogramaG() {
+        return histogramaG;
+    }
+
+    /**
+     * @return the histogramaB
+     */
+    public int[] getHistogramaB() {
+        return histogramaB;
     }
     
 }

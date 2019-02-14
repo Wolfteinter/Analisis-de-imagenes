@@ -30,7 +30,8 @@ public class AnalisisDeImagenes {
         JFrameImagen frame2 = new JFrameImagen(grises);
         HistogramaFrecuencias histo = new HistogramaFrecuencias(grises);
         histo.graficarHistogramasRGB();
-        Image binaria = Umbralizacion.umbralizacionSimple(253,grises);
+        int u = Umbralizacion.obtenerUmbralAutomatico(histo.getHistogramaR());
+        Image binaria = Umbralizacion.umbralizacionSimple(u,grises);
         JFrameImagen frame3 = new JFrameImagen(binaria);
         
         
