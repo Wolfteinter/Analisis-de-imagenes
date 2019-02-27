@@ -7,10 +7,9 @@ package analisis.de.imagenes;
 
 import GUI.JFrameImagen;
 import io.ImageManager;
-import java.awt.Color;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import muestreo.EscalaGrises;
+import muestreo.Expansion;
 import muestreo.HistogramaFrecuencias;
 import muestreo.Umbralizacion;
 
@@ -30,11 +29,18 @@ public class AnalisisDeImagenes {
         JFrameImagen frame2 = new JFrameImagen(grises);
         HistogramaFrecuencias histo = new HistogramaFrecuencias(grises);
         histo.graficarHistogramasRGB();
-        int u = Umbralizacion.obtenerUmbralAutomatico(histo.getHistogramaR());
-        Image binaria = Umbralizacion.umbralizacionSimple(u,grises);
-        JFrameImagen frame3 = new JFrameImagen(binaria);
-        
-        
+        int min = Expansion.calcularMinimo(histo.getHistogramaR());
+        System.out.println(min);
+        int max = Expansion.calcularMaximo(histo.getHistogramaR());
+         System.out.println(max);
+        Image contraste = Expansion.expansionLineal(min, max,grises);
+        JFrameImagen frame3 = new JFrameImagen(contraste);
+        HistogramaFrecuencias histo2 = new HistogramaFrecuencias(contraste);
+        histo2.graficarHistogramasRGB();
+        min = Expansion.calcularMinimo(histo2.getHistogramaR());
+        System.out.println(min);
+        max = Expansion.calcularMaximo(histo2.getHistogramaR());
+         System.out.println(max);
         System.out.println();
             
     }
