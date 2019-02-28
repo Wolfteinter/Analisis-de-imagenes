@@ -30,7 +30,7 @@ public class AnalisisDeImagenes {
         HistogramaFrecuencias histo = new HistogramaFrecuencias(grises);
         histo.graficarHistogramasRGB();
        
-        Image contraste = Expansion.expansionLogaritmica(2,grises);
+        Image contraste = Expansion.expansionExponencial(1,grises);
         JFrameImagen frame3 = new JFrameImagen(contraste);
         HistogramaFrecuencias histo2 = new HistogramaFrecuencias(contraste);
         histo2.graficarHistogramasRGB();
