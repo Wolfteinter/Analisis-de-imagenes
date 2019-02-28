@@ -29,18 +29,12 @@ public class AnalisisDeImagenes {
         JFrameImagen frame2 = new JFrameImagen(grises);
         HistogramaFrecuencias histo = new HistogramaFrecuencias(grises);
         histo.graficarHistogramasRGB();
-        int min = Expansion.calcularMinimo(histo.getHistogramaR());
-        System.out.println(min);
-        int max = Expansion.calcularMaximo(histo.getHistogramaR());
-         System.out.println(max);
-        Image contraste = Expansion.expansionLineal(min, max,grises);
+       
+        Image contraste = Expansion.expansionLogaritmica(2,grises);
         JFrameImagen frame3 = new JFrameImagen(contraste);
         HistogramaFrecuencias histo2 = new HistogramaFrecuencias(contraste);
         histo2.graficarHistogramasRGB();
-        min = Expansion.calcularMinimo(histo2.getHistogramaR());
-        System.out.println(min);
-        max = Expansion.calcularMaximo(histo2.getHistogramaR());
-         System.out.println(max);
+        
         System.out.println();
             
     }

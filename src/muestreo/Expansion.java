@@ -42,6 +42,22 @@ public class Expansion {
         }
         return -1;
     }
+    public static Image expansionLogaritmica(int j ,Image imagenOriginal){
+        BufferedImage bi = ImageManager.toBufferedImage(imagenOriginal);
+        // recorremos la imagen 
+        for(int x=0; x<bi.getWidth();x++){
+            for (int y=0;y<bi.getHeight();y++){
+            // extraer los valores por canal
+            Color color = new Color(bi.getRGB(x, y));
+            int r = (int)validarRango(255*Math.log(j+color.getRed())/Math.log(256));
+            int g = (int)validarRango(255*Math.log(j+color.getGreen())/Math.log(256));
+            int b = (int)validarRango(255*Math.log(j+color.getBlue())/Math.log(256));
+            color = new Color(r, g, b);
+            bi.setRGB(x, y, color.getRGB());
+            }
+        }
+        return ImageManager.toImage(bi);
+    }
     public static int calcularMaximo(int histo[]){
     // recorremos el histograma de der-izq
         for(int x=histo.length-1;x>-1;x--){
