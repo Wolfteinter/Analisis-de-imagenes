@@ -8,10 +8,10 @@ package analisis.de.imagenes;
 import GUI.JFrameImagen;
 import io.ImageManager;
 import java.awt.Image;
+import muestreo.Convolucion;
 import muestreo.EscalaGrises;
 import muestreo.Expansion;
 import muestreo.HistogramaFrecuencias;
-import muestreo.Umbralizacion;
 
 /**
  *
@@ -25,16 +25,13 @@ public class AnalisisDeImagenes {
     public static void main(String[] args) {
         Image imagen = ImageManager.openImage();
         JFrameImagen frame1 = new JFrameImagen(imagen);
-        Image grises = EscalaGrises.generarImagenEnGrises(imagen);
-        JFrameImagen frame2 = new JFrameImagen(grises);
-        HistogramaFrecuencias histo = new HistogramaFrecuencias(grises);
-        histo.graficarHistogramasRGB();
-       
-        Image contraste = Expansion.expansionExponencial(1,grises);
-        JFrameImagen frame3 = new JFrameImagen(contraste);
-        HistogramaFrecuencias histo2 = new HistogramaFrecuencias(contraste);
-        histo2.graficarHistogramasRGB();
+        double kernel [][] = new double[][]{{1,1,1},{1,1,1},{1,1,1}};
+        double kernel2 [][] = new double[][]{{1,1,1,1,1},{1,4,4,4,1},{1,4,12,4,1},{1,4,4,4,1},{1,1,1,1,1}};
+        Image convo = Convolucion.convolucionar(imagen, kernel2, 1);
         
+        JFrameImagen frame2 = new JFrameImagen(convo);
+        
+       
         System.out.println();
             
     }
