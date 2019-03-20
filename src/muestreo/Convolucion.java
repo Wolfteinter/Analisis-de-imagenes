@@ -25,7 +25,7 @@ public class Convolucion {
             for(int y=0;y<bi.getHeight();y++){
             // valorar si aplica la convolucion 
             // recorremos el kernel
-            int cE =0;
+            double cE =0;
             double aR = 0,aG = 0,aB = 0;
             int xx=0,yy=0;
             Color color;
@@ -46,6 +46,9 @@ public class Convolucion {
                 }
                 xx=0;
             }
+            if(x==16 && y==16){
+            System.out.println();
+            }
             // aplicar el fD
             aR/=(fD-cE);
             aG/=(fD-cE);
@@ -56,6 +59,8 @@ public class Convolucion {
             }
         
         }
+    Color color = new Color(nueva.getRGB(15, 15));
+    
     return ImageManager.toImage(nueva);
     }
     
