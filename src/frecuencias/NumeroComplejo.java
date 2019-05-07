@@ -10,41 +10,43 @@ package frecuencias;
  * @author Roberto Cruz Leija
  */
 public class NumeroComplejo {
-    private double real;
-    private double imaginaria;
+    
+    private  double real;
+    private  double imaginaria;
 
     public NumeroComplejo(double real, double imaginaria) {
         this.real = real;
         this.imaginaria = imaginaria;
     }
-    
-    public NumeroComplejo(NumeroComplejo aux){
-        this(aux.getReal(),aux.getImaginaria());
+    public NumeroComplejo(NumeroComplejo complejo){
+      this(complejo.getParteReal(),complejo.getParteImaginaria());   
     }
-    // TODO: VERIFICAR SI ME RETORNA UNO NUEVO Y DEFINIR LA MULTI
-//    public void sumar (NumeroComplejo aux){
-//        this.real+=aux.getReal();
-//        this.imaginaria+=aux.getImaginaria();
-//    }
-//    
-//     public void multiplicar(NumeroComplejo aux){
-//        this.real*=aux.getReal();
-//        this.imaginaria*=aux.getImaginaria();
-//    }
 
     /**
      * @return the real
      */
-    public double getReal() {
+    public double getParteReal() {
         return real;
     }
 
     /**
      * @return the imaginaria
      */
-    public double getImaginaria() {
+    public double getParteImaginaria() {
         return imaginaria;
     }
     
+    public NumeroComplejo sumar(NumeroComplejo segundo) {
+                //obtiene la referencia al objeto
+		NumeroComplejo primero = this; 
+		double real = primero.real + segundo.real;
+		double imag = primero.imaginaria + segundo.imaginaria;
+		return new NumeroComplejo(real, imag);
+	}
+
+	public NumeroComplejo producto(double multiplicador) {
+		return new NumeroComplejo(real * multiplicador, imaginaria * multiplicador);
+	}
     
+
 }

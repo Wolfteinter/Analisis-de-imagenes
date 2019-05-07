@@ -49,11 +49,11 @@ public class HerramientasColor {
         int aux = 0;
         switch(canal){
             case ROJO:{
-                aux = new Color(valor,0,0).getRed();
+                aux = new Color(valor,0,0).getRGB();
             break;
             }
             case VERDE:{
-                aux = new Color(0, valor,0).getGreen();
+                aux = new Color(0, valor,0).getRGB();
                 break;
             }
             case AZUL:{
@@ -61,5 +61,10 @@ public class HerramientasColor {
             }
         }
         return aux;
+    }
+    
+    
+public static int acumularColor(int color1, int color2 ){
+     return color1 | color2;
     }
 }

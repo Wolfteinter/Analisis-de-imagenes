@@ -30,12 +30,10 @@ public class AnalisisDeImagenes {
      */
     public static void main(String[] args) {
          BufferedImage bi = ImageManager.toBufferedImage(ImageManager.openImage());
-         Color color = new Color(bi.getRGB(120, 34));
-         int r =  color.getRed();
-         int g =  color.getGreen();
-         int b =  color.getBlue();
+         
          Gestor gestor = new Gestor(bi);
-         NumeroComplejo [][] aux = gestor.representacionEspacial.get(HerramientasColor.CanalColor.AZUL);
+         BufferedImage aux = gestor.obtenerImagenFrecuencias(true);
+          JFrameImagen i = new JFrameImagen(ImageManager.toImage(aux));
          System.out.println();
 //        FiltroExponencialPasaBajas filtro = new FiltroExponencialPasaBajas(512, 512, 150,2);
 //        filtro.generar();

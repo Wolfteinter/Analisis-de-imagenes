@@ -28,7 +28,7 @@ public abstract class FiltroFrecuencia {
     // recorrer el buffered
     for (int x=0; x<bi.getWidth();x++)
         for(int y=0; y<bi.getHeight();y++){
-        int rgb = (int)this.matriz[x][y].getReal();
+        int rgb = (int)this.matriz[x][y].getParteReal();
         bi.setRGB(x, y, rgb);
                 
     }

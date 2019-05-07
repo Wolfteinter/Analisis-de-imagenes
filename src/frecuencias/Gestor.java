@@ -5,9 +5,12 @@
  */
 package frecuencias;
 
+import frecuencias.HerramientasColor.CanalColor;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
+import muestreo.Convolucion;
+import muestreo.Expansion;
 
 /**
  *
@@ -42,6 +45,44 @@ public class Gestor {
        return aux;
     }
     
-    
+    public BufferedImage obtenerImagenFrecuencias(boolean reAjustarCuadrante) {
+        /// obtenemos las dimensiones
+        int anchoImagen = this.imagenOriginal.getWidth();
+        int altoImagen = this.imagenOriginal.getHeight();
+        BufferedImage aux = new BufferedImage(anchoImagen, altoImagen, BufferedImage.TYPE_INT_ARGB);
+
+        FFTCalculo fft = new FFTCalculo();
+        // construir el mapeo de representacion en frecuencias utilizando FFT
+
+        for (CanalColor canal : HerramientasColor.CanalColor.values()) {
+            NumeroComplejo[][] datos = this.representacionEspacial.get(canal);
+            NumeroComplejo[][] transformada = fft.calculateFT(datos, false);
+            representacionFrecuencias.put(canal, transformada);
+            // crear la imagen del espectro 
+            for (int y = 0; y < aux.getHeight(); y++) {
+                for (int x = 0; x < aux.getWidth(); x++) {
+                    // modificamos la posicion de los cuadrantes 
+                    int ejeX = reAjustarCuadrante ? (x + (anchoImagen / 2)) % anchoImagen : x;
+                    int ejeY = reAjustarCuadrante ? (y + (altoImagen / 2)) % altoImagen : y;
+                    // setear la info a la imagen 
+                    // el que se ecuentre en la imagen 
+                    int color1 = aux.getRGB(x, y);
+                    int color2 = obtenerColorRealDeFrecuencia(ejeX, ejeY, transformada, canal);
+                    int rgb = HerramientasColor.acumularColor(color1, color2);
+                    aux.setRGB(x, y, rgb);
+
+                }
+            }
+        }
+        return aux;
+    }
+
+  private int obtenerColorRealDeFrecuencia(int ejeX, int ejeY, NumeroComplejo[][] transformada, CanalColor canal) {
+        int color = (int) Math.abs(transformada[ejeX][ejeY].getParteReal());
+        color = (int) Expansion.validarRango(color);
+        color = HerramientasColor.obtenerRGBporCanal(color, canal);
+        return color;
+    }
+
     
 }
